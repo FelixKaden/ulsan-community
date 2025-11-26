@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>울산 커뮤니티 공지사항 & 강의 안내</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR",
+        "Malgun Gothic", sans-serif;
+      background: #eaf3ff;
+      color: #111;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* 상단 헤더 */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: linear-gradient(135deg, #0b79d0, #1e88e5);
+      color: #fff;
+      padding: 12px 0 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+    }
+
+    .header-inner {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-left { display: flex; align-items: center; gap: 10px; }
+
+    .header-logo-circle {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+
+    .header-text-main { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .header-text-sub { font-size: 11px; opacity: 0.9; }
+
+    .header-right { text-align: right; font-size: 11px; opacity: 0.95; }
+    .header-right .label {
+      display: inline-block; padding: 2px 6px; border-radius: 999px;
+      background: rgba(255,255,255,0.14); margin-bottom: 3px; font-size: 10px;
+    }
+
+    /* 페이지 컨테이너 */
+    .page { max-width: 100%; padding: 14px 12px 40px; }
+
+    /* 공통 카드 */
+    .section {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 16px 16px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 10px rgba(11, 121, 208, 0.06);
+      border: 1px solid rgba(11,121,208,0.08);
+    }
+
+    .section-calendar { border-radius: 14px; box-shadow: 0 4px 10px rgba(11,121,208,0.06); }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px; padding: 3px 9px;
+      border-radius: 999px;
+      background: #e3f2fd; color: #0b79d0; border: 1px solid #bbdefb;
+      margin-bottom: 8px;
+    }
+    .badge-orange { background: #fff3e0; color: #f57c00; border-color: #ffe0b2; }
+    .badge-red { background: #ffebee; color: #d32f2f; border-color: #ffcdd2; }
+
+    .section-title {
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .section-title-icon { font-size: 18px; }
+
+    .section-sub { font-size: 13px; color: #5f6b7a; margin-bottom: 10px; }
+
+    .list { list-style: none; margin-top: 4px; }
+    .list li { font-size: 13px; margin-bottom: 6px; }
+
+    .list-dot { list-style: none; margin-top: 6px; }
+    .list-dot li {
+      font-size: 13px; margin-bottom: 6px; padding-left: 12px; position: relative;
+    }
+    .list-dot li::before {
+      content: "•"; position: absolute; left: 0; top: 0; color: #4f5b67;
+    }
+
+    .small-text { font-size: 12px; color: #4f5b67; }
+
+    .highlight-warning { font-size: 12px; color: #c62828; font-weight: 700; white-space: pre-line; }
+
+    .code-box {
+      background: #f3f7ff; border-radius: 10px; padding: 10px 11px;
+      margin-top: 10px; font-size: 12px; border: 1px solid #d0ddff;
+      line-height: 1.6;
+    }
+
+    .strong { font-weight: 600; }
+    .link { color: #1565c0; text-decoration: underline; }
+    .tag {
+      display:inline-block; font-size:11px; padding:2px 6px;
+      border-radius:999px; background:#e3f2fd; color:#1e3a8a;
+      margin-right:4px; margin-bottom:2px;
+    }
+
+    /* 캘린더 */
+    .calendar-box { padding: 0; background: none; border: none; }
+    .calendar-box p { font-size: 12px; color: #5f6b7a; margin-bottom: 6px; }
+
+    .calendar-embed-wrap {
+  width: 100%;
+  height: 50vh;         /* 화면 높이의 50% */
+  min-height: 320px;    /* 너무 작지 않게 최소값 */
+  max-height: 520px;    /* 너무 커지지 않게 최대값 */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #c7d7f5;
+  background: #ffffff;
+}
+
+    .calendar-embed-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+    .btn-full {
+      display: inline-block;
+      background: #0b79d0; color: #fff;
+      font-size: 13px; font-weight: 700;
+      padding: 10px 14px; border-radius: 10px;
+      margin: 10px 0 14px; text-align: center;
+    }
+
+    .footer {
+      margin-top: 14px;
+      font-size: 11px; color: #60748a;
+      text-align: center; line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="header-logo-circle"><span>🌊</span></div>
+        <div>
+          <div class="header-text-main">울산 커뮤니티 공지</div>
+          <div class="header-text-sub">Ulsan Community · 강의 & 안내</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="label">MOBILE</div>
+        <div>업데이트 · 2025-11-25</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- 달력 섹션 -->
+    <section class="section section-calendar">
+      <div class="badge badge-orange">매월 강의 일정</div>
+      <h2 class="section-title">
+        <span class="section-title-icon">📆</span>
+        <span>매월 강의 달력</span>
+      </h2>
+      <p class="section-sub">울산 커뮤니티의 월별 강의를 확인하세요.</p>
+
+      <!-- 전체 달력 버튼 -->
+      <a href="calendar.html" class="btn-full">📅 전체 달력 보기 (풀스크린)</a>
+
+      <div class="calendar-box">
+        <p>아래는 미리보기입니다. 전체 달력은 위 버튼을 눌러주세요.</p>
+
+        <div class="calendar-embed-wrap">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=kdy.inha%40gmail.com&ctz=Asia%2FSeoul"
+            loading="fast"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 필독 안내 -->
+    <section class="section">
+      <div class="badge badge-red">필독 안내</div>
+      <h2 class="section-title">
+        <span class="section-title-icon">❗</span>
+        <span>교육 참석 전 필독</span>
+      </h2>
+
+      <p class="small-text">
+        · 타 커뮤니티 회원 참석 시 <span class="strong">대박이 대표님 사전 신청 필수</span><br>
+        · 월 2회 교육 중 <span class="strong">1회 이상 특강 참석 필수</span>
+      </p>
+
+      <div class="code-box" style="margin-top:10px;">
+        <div class="strong">커뮤니티 주소</div>
+        울산광역시 남구 달동 1325-17, 2층 (건물 주차 불가)<br><br>
+        <div class="strong">참고 (주차 안내)</div>
+        인근 문화예술회관, 남구청, 공원, 뉴코아아울렛 등 외부 주차 이용 권장
+      </div>
+
+      <div class="code-box" style="margin-top:10px;">
+        <div class="strong">커뮤니티 연락처</div>
+        대표 대박이 <a class="link" href="tel:01038513013">010-3851-3013</a><br>
+        부대표 아이노스 <a class="link" href="tel:01038300388">010-3830-0388</a><br>
+        전산강사 베리굿 <a class="link" href="tel:01056753024">010-5675-3024</a><br>
+        전산강사 클락 <a class="link" href="tel:01027781052">010-2778-1052</a>
+      </div>
+    </section>
+
+    <!-- 트러스트월렛 안내 -->
+    <section class="section">
+      <div class="badge">트러스트월렛 설정</div>
+      <h2 class="section-title">
+        <span class="section-title-icon">💼</span>
+        <span>트러스트월렛 사용 안내</span>
+      </h2>
+
+      <ul class="list">
+        <li>
+          1. 어플 설치 →
+          <a class="link" href="https://trustwallet.com/" target="_blank" rel="noopener noreferrer">
+            트러스트월렛 공식 다운로드
+          </a>
+        </li>
+        <li>
+          2. 가입 후 니모닉은 <span class="strong">종이에 직접 작성하여 보관</span>
+        </li>
+      </ul>
+
+      <p class="highlight-warning" style="margin-top:8px;">
+        ※ 캡처·촬영·메모앱 저장 금지<br>
+        ※ 니모닉 유출 시 지갑 해킹 및 자산 손실 발생 가능 (모든 책임 본인에게 있음)
+      </p>
+
+      <ul class="list" style="margin-top:10px;">
+        <li>3. 가상자산 관리 메뉴로 이동</li>
+        <li>4. 우측 상단 <span class="strong">＋</span> 버튼 선택</li>
+        <li>5. 네트워크를 <span class="strong">Polygon</span> 으로 변경</li>
+        <li>6. 아래 컨트랙트주소 복사 → 붙여넣기</li>
+        <li>7. 가져오기 완료</li>
+      </ul>
+
+      <div class="code-box">
+        <div class="code-title">컨트랙트주소</div>
+        1. SUT<br>0x98965474EcBeC2F532F1f780ee37b0b05F77Ca55<br><br>
+        2. KWT<br>0x435001Af7fC65B621B0043df99810B2f30860c5d<br><br>
+        3. MSQ<br>0x6A8Ec2d9BfBDD20A7F5A4E89D640F7E7cebA4499<br><br>
+        4. P2U<br>0xF43FaBA41bEB27Db352E054E6F163de675D508f1
+      </div>
+
+      <p class="small-text" style="margin-top:8px;">
+        ※ 위 과정(3~7번)은 SUT / KWT / MSQ / P2U 모두 동일하게 반복해 주세요.
+      </p>
+    </section>
+
+    <!-- 소개자의 의무 -->
+    <section class="section">
+      <div class="badge badge-red">중요 안내</div>
+      <h2 class="section-title">
+        <span class="section-title-icon">🤝</span>
+        <span>소개자의 의무</span>
+      </h2>
+
+      <p class="small-text">
+        ❤️ 케어는 전적으로 <span class="strong">초대자</span> 몫입니다.<br><br>
+        기본적인 질문은 반드시 <span class="strong">초대자에게 먼저 문의</span>하시고,<br>
+        초대자 선에서 해결하기 어려운 내용은 필히 <span class="strong">커뮤니티를 거친 후</span><br>
+        소통센터로 연락해주시기 바랍니다.
+      </p>
+
+      <div class="code-box" style="margin-top:10px;">
+        🔗 소통센터<br>
+        <a class="link" href="http://pf.kakao.com/_hxgxixoG" target="_blank" rel="noopener noreferrer">
+          http://pf.kakao.com/_hxgxixoG
+        </a>
+      </div>
+    </section>
+
+    <!-- 소속 커뮤니티 안내 -->
+    <section class="section">
+      <div class="badge">커뮤니티 안내</div>
+      <h2 class="section-title">
+        <span class="section-title-icon">📣</span>
+        <span>소속 커뮤니티 변경 및 입장 안내</span>
+      </h2>
+
+      <p class="small-text">
+        📣 <span class="strong">매월 1일</span>은 소속 커뮤니티 변경 가능일입니다.<br><br>
+        소속 커뮤니티는 가입 당시·지인 기준이 아니라,<br>
+        현재 실제로 활동하고 도움받는 커뮤니티 기준으로 설정해야 합니다.
+      </p>
+
+      <div class="code-box" style="margin-top:10px;">
+        <div class="code-title">울산남구 커뮤니티 단톡방</div>
+        남구 소속이 아니신 분은<br>
+        ① 단톡방 나가기 → ② 매월 1일에 소속 커뮤니티 변경 후 재입장
+      </div>
+
+      <div class="code-box" style="margin-top:10px;">
+        <div class="code-title">입장 시 닉네임 양식</div>
+        <div class="tag">[스타방]</div> 초대코드5자리 / 닉네임<br>
+        <div class="tag">[울산남구]</div> 초대코드5자리 / 닉네임(거주동)
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      위 내용을 숙지하신 후 강의 및 커뮤니티 활동에 참여해주시기 바랍니다.<br>
+      안전한 자산 관리와 원활한 소통을 위해 항상 협조해 주셔서 감사합니다.<br>
+      Ulsan Community
+    </footer>
+
+  </main>
+</body>
+</html>

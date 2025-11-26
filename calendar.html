@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>울산 커뮤니티 강의 달력</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <!-- FullCalendar + Google Calendar -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.8/index.global.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Noto Sans KR", "Malgun Gothic", sans-serif;
+      background: #eaf3ff;
+      display: flex;
+      flex-direction: column;
+      color: #111;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* 상단 바 */
+    .top-bar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #0b79d0, #1e88e5);
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+    }
+
+    .top-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-logo {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .top-text-main {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .top-btn {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.8);
+      background: #ffffff;
+      color: #0b79d0;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* 월 네비게이션 */
+    .month-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid #dbe7f7;
+    }
+
+    .month-btn {
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #0b79d0;
+      background: #ffffff;
+      color: #0b79d0;
+      font-weight: 700;
+    }
+
+    .month-label {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0b3954;
+    }
+
+    .calendar-wrap {
+      flex: 1 1 auto;
+      padding: 6px 8px 10px;
+      background: #eaf3ff;
+      min-height: 0;
+    }
+
+    #calendar {
+      height: 100%;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 4px;
+      border: 1px solid rgba(11,121,208,0.12);
+    }
+
+    /* ✅ FullCalendar 순정 + 색상만 */
+    .fc-header-toolbar { display: none; }
+
+    .fc-day-today {
+      background: #e3f2fd !important;
+    }
+
+    .fc-daygrid-day-number {
+      font-weight: 600;
+      color: #0b3954;
+      padding: 3px;
+    }
+
+    .fc-daygrid-day-frame {
+      min-height: 78px;
+      padding: 3px;
+    }
+
+    .fc-event {
+      border-radius: 6px !important;
+      padding: 2px 4px !important;
+      margin-bottom: 3px !important;
+      border: none !important;
+    }
+
+    .fc-event-title {
+      white-space: normal !important;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    .fc-col-header-cell-cushion {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 0;
+      color: #0b3954;
+    }
+
+    .fc-event.normal-event {
+      background: #0b79d0;
+      color: #ffffff;
+    }
+
+    .fc-event.special-event {
+      background: #f57c00;
+      color: #ffffff;
+    }
+
+    .fc-event.it-event {
+      background: #2e7d32;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 바 -->
+  <header class="top-bar">
+    <div class="top-title">
+      <div class="top-logo">🌊</div>
+      <div class="top-text-main">울산 커뮤니티 강의 달력</div>
+    </div>
+    <a href="index.html" class="top-btn">공지 페이지</a>
+  </header>
+
+  <!-- ✅ 월 이동 탭 -->
+  <div class="month-nav">
+    <button class="month-btn" id="prevMonth">◀ 이전 달</button>
+    <div class="month-label" id="month-label"></div>
+    <button class="month-btn" id="nextMonth">다음 달 ▶</button>
+  </div>
+
+  <!-- ✅ 달력 -->
+  <div class="calendar-wrap">
+    <div id="calendar"></div>
+  </div>
+
+  <script>
+    function getEventType(title) {
+      const t = (title || "").toLowerCase();
+      if (t.includes("특강")) return "special";
+      if (t.includes("전산") || t.includes("it")) return "it";
+      return "normal";
+    }
+
+    function updateMonthLabel(date) {
+      var y = date.getFullYear();
+      var m = date.getMonth() + 1;
+      document.getElementById("month-label").textContent =
+        y + "년 " + m + "월 강의 일정";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var calendarEl = document.getElementById("calendar");
+      var initialDate = new Date();
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        locale: "ko",
+        height: "100%",
+        initialView: "dayGridMonth",
+        initialDate: initialDate,
+        headerToolbar: false,
+
+        googleCalendarApiKey: "AIzaSyDfnQFaueEu5k9NZdkjzkuTaFaJsOcckpQ",
+
+        eventSources: [
+          { googleCalendarId: "kdy.inha@gmail.com" }
+        ],
+
+        eventClassNames: function (arg) {
+          var type = getEventType(arg.event.title);
+          if (type === "special") return [ "special-event" ];
+          if (type === "it") return [ "it-event" ];
+          return [ "normal-event" ];
+        }
+      });
+
+      calendar.render();
+      updateMonthLabel(initialDate);
+
+      document.getElementById("prevMonth").addEventListener("click", function () {
+        calendar.prev();
+        updateMonthLabel(calendar.getDate());
+      });
+
+      document.getElementById("nextMonth").addEventListener("click", function () {
+        calendar.next();
+        updateMonthLabel(calendar.getDate());
+      });
+    });
+  </script>
+</body>
+</html>
