@@ -149,14 +149,6 @@
       border-radius: 12px;
     }
 
-    .btn-full {
-      display: inline-block;
-      background: #0b79d0; color: #fff;
-      font-size: 13px; font-weight: 700;
-      padding: 10px 14px; border-radius: 10px;
-      margin: 10px 0 14px; text-align: center;
-    }
-
     .footer {
       margin-top: 14px;
       font-size: 11px; color: #60748a;
@@ -187,24 +179,26 @@
 
   <main class="page">
 
-    <!-- 달력 섹션 (이미지용) -->
+    <!-- 달력 섹션 (이미지 클릭 → 전체 달력) -->
     <section class="section section-calendar">
       <div class="badge badge-orange">매월 강의 일정</div>
       <h2 class="section-title">
         <span class="section-title-icon">📆</span>
         <span>매월 강의 달력</span>
       </h2>
-      <p class="section-sub">울산 커뮤니티의 월별 강의를 이미지로 확인하실 수 있습니다.</p>
-
-      <!-- 전체 달력 버튼 (풀스크린 calendar.html로 연결) -->
-      <a href="calendar.html" class="btn-full">📅 전체 달력 보기 (풀스크린)</a>
+      <p class="section-sub">
+        울산 커뮤니티의 월별 강의를 이미지로 확인하실 수 있습니다.<br>
+        아래 달력을 누르면 전체 화면으로 크게 볼 수 있습니다.
+      </p>
 
       <div class="calendar-box">
-        <p>아래는 이번 달 강의 달력 이미지입니다. 최신 변경 사항은 전체 달력 페이지를 참고해 주세요.</p>
+        <p>※ 최신 변경 사항은 전체 달력 페이지를 우선으로 합니다.</p>
 
         <div class="calendar-embed-wrap">
-          <!-- ✅ 이 파일과 같은 폴더에 있는 calendar.png 이미지를 사용 -->
-          <img src="calendar.png" alt="울산 커뮤니티 매월 강의 달력">
+          <!-- ✅ 이미지를 누르면 calendar.html(풀스크린 달력)으로 이동 -->
+          <a href="calendar.html">
+            <img src="calendar.png" alt="울산 커뮤니티 매월 강의 달력">
+          </a>
         </div>
       </div>
     </section>
