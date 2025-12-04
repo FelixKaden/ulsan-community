@@ -1,142 +1,233 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>울산 남구 커뮤니티 공지사항 & 강의 안내</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>울산 남구 커뮤니티 공지</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR",
-        "Malgun Gothic", sans-serif;
-      background: #eaf3ff;
-      color: #111;
-      line-height: 1.5;
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background: linear-gradient(135deg, #e8f4fc 0%, #f0f7ff 100%);
+      min-height: 100vh;
+      font-size: 17px; /* 기본 글씨 크기 증가 */
+      line-height: 1.7;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    /* 상단 헤더 */
+    /* 헤더 */
     .header {
+      background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+      color: #fff;
+      padding: 20px 16px;
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: linear-gradient(135deg, #0b79d0, #1e88e5);
-      color: #fff;
-      padding: 12px 0 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
     }
 
     .header-inner {
-      max-width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 600px;
       margin: 0 auto;
-      padding: 0 12px;
+    }
+
+    .header-left {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 12px;
     }
-
-    .header-left { display: flex; align-items: center; gap: 10px; }
 
     .header-logo-circle {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .header-text-main { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
-    .header-text-sub { font-size: 11px; opacity: 0.9; }
+    .header-logo-circle span {
+      font-size: 26px;
+    }
 
-    .header-right { text-align: right; font-size: 11px; opacity: 0.95; }
+    .header-text-main {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .header-text-sub {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
     .header-right .label {
-      display: inline-block; padding: 2px 6px; border-radius: 999px;
-      background: rgba(255,255,255,0.14); margin-bottom: 3px; font-size: 10px;
+      background: rgba(255,255,255,0.2);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-bottom: 4px;
+      display: inline-block;
     }
 
-    /* 페이지 컨테이너 */
-    .page { max-width: 100%; padding: 14px 12px 40px; }
+    /* 메인 페이지 */
+    .page {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 16px;
+    }
 
-    /* 공통 카드 */
+    /* 섹션 */
     .section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 16px 16px 18px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 20px;
       margin-bottom: 18px;
-      box-shadow: 0 4px 10px rgba(11, 121, 208, 0.06);
-      border: 1px solid rgba(11,121,208,0.08);
-    }
-
-    .section-calendar {
-      border-radius: 14px;
-      box-shadow: 0 4px 10px rgba(11,121,208,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
     .badge {
       display: inline-block;
-      font-size: 11px; padding: 3px 9px;
-      border-radius: 999px;
-      background: #e3f2fd; color: #0b79d0; border: 1px solid #bbdefb;
-      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: #e3f2fd;
+      color: #1565c0;
+      margin-bottom: 12px;
     }
-    .badge-orange { background: #fff3e0; color: #f57c00; border-color: #ffe0b2; }
-    .badge-red { background: #ffebee; color: #d32f2f; border-color: #ffcdd2; }
+
+    .badge-orange {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    .badge-red {
+      background: #ffebee;
+      color: #c62828;
+    }
 
     .section-title {
-      font-size: 16px; font-weight: 700;
-      margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-    }
-    .section-title-icon { font-size: 18px; }
-
-    .section-sub { font-size: 13px; color: #5f6b7a; margin-bottom: 10px; }
-
-    .list { list-style: none; margin-top: 4px; }
-    .list li { font-size: 13px; margin-bottom: 6px; }
-
-    .list-dot { list-style: none; margin-top: 6px; }
-    .list-dot li {
-      font-size: 13px; margin-bottom: 6px; padding-left: 12px; position: relative;
-    }
-    .list-dot li::before {
-      content: "•"; position: absolute; left: 0; top: 0; color: #4f5b67;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a237e;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .small-text { font-size: 12px; color: #4f5b67; }
+    .section-title-icon {
+      font-size: 26px;
+    }
 
-    .highlight-warning { font-size: 12px; color: #c62828; font-weight: 700; white-space: pre-line; }
+    .section-sub {
+      font-size: 16px;
+      color: #546e7a;
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    /* 리스트 */
+    .list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .list li {
+      font-size: 16px;
+      color: #37474f;
+      margin-bottom: 14px;
+      padding-left: 8px;
+      line-height: 1.7;
+    }
+
+    .list li .num {
+      font-weight: 700;
+      color: #1565c0;
+      margin-right: 6px;
+    }
+
+    /* 텍스트 스타일 */
+    .small-text {
+      font-size: 16px;
+      color: #4f5b67;
+      line-height: 1.8;
+    }
+
+    .highlight-warning {
+      font-size: 16px;
+      color: #c62828;
+      font-weight: 700;
+      white-space: pre-line;
+      line-height: 1.8;
+    }
 
     .code-box {
-      background: #f3f7ff; border-radius: 10px; padding: 10px 11px;
-      margin-top: 10px; font-size: 12px; border: 1px solid #d0ddff;
-      line-height: 1.6;
+      background: #f3f7ff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-top: 14px;
+      font-size: 16px;
+      border: 1px solid #d0ddff;
+      line-height: 1.8;
     }
 
-    .strong { font-weight: 600; }
-    .link { color: #1565c0; text-decoration: underline; }
+    .code-box .code-title {
+      font-weight: 700;
+      color: #1565c0;
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .strong {
+      font-weight: 700;
+    }
+
+    .link {
+      color: #1565c0;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
     .tag {
-      display:inline-block; font-size:11px; padding:2px 6px;
-      border-radius:999px; background:#e3f2fd; color:#1e3a8a;
-      margin-right:4px; margin-bottom:2px;
+      display: inline-block;
+      font-size: 14px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e3f2fd;
+      color: #1e3a8a;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      font-weight: 600;
     }
 
-    /* 캘린더 이미지용 박스 */
+    /* 캘린더 박스 */
     .calendar-box {
       padding: 0;
       background: none;
       border: none;
-      margin-top: 6px;
+      margin-top: 10px;
     }
 
     .calendar-box p {
-      font-size: 12px;
+      font-size: 15px;
       color: #5f6b7a;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
 
     .calendar-embed-wrap {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       border: 1px solid #c7d7f5;
       background: #ffffff;
@@ -146,13 +237,17 @@
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 12px;
+      border-radius: 14px;
     }
 
+    /* 푸터 */
     .footer {
-      margin-top: 14px;
-      font-size: 11px; color: #60748a;
-      text-align: center; line-height: 1.6;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #60748a;
+      text-align: center;
+      line-height: 1.8;
+      padding: 16px;
     }
   </style>
 </head>
@@ -179,7 +274,7 @@
 
   <main class="page">
 
-    <!-- 달력 섹션 (이미지 클릭 → 전체 달력) -->
+    <!-- 달력 섹션 -->
     <section class="section section-calendar">
       <div class="badge badge-orange">매월 강의 일정</div>
       <h2 class="section-title">
@@ -195,7 +290,6 @@
         <p>※ 최신 변경 사항은 필요시 업데이트 합니다.</p>
 
         <div class="calendar-embed-wrap">
-          <!-- ✅ 이미지를 누르면 calendar.html(풀스크린 달력)으로 이동 -->
           <a href="calendar.png">
             <img src="calendar.png" alt="울산 남구 커뮤니티 매월 강의 달력">
           </a>
@@ -216,18 +310,17 @@
         · 월 2회 교육 중 <span class="strong">1회 이상 특강 참석 필수</span>
       </p>
 
-      <div class="code-box" style="margin-top:10px;">
-        <div class="strong">커뮤니티 주소</div>
+      <div class="code-box">
+        <div class="code-title">커뮤니티 주소</div>
         울산광역시 남구 달동 1325-17, 2층 (건물 주차 불가)<br><br>
-        <div class="strong">참고 (주차 안내)</div>
+        <div class="code-title">참고 (주차 안내)</div>
         인근 문화예술회관, 남구청, 공원, 뉴코아아울렛 등 외부 주차 이용 권장
       </div>
 
-      <div class="code-box" style="margin-top:10px;">
-        <div class="strong">커뮤니티 연락처</div>
+      <div class="code-box">
+        <div class="code-title">커뮤니티 연락처</div>
         대표 대박이 <a class="link" href="tel:01038513013">010-3851-3013</a><br>
         부대표 아이노스 <a class="link" href="tel:01038300388">010-3830-0388</a><br>
-        전산강사 베리굿 <a class="link" href="tel:01056753024">010-5675-3024</a><br>
         전산강사 클락 <a class="link" href="tel:01027781052">010-2778-1052</a>
       </div>
     </section>
@@ -252,12 +345,12 @@
         </li>
       </ul>
 
-      <p class="highlight-warning" style="margin-top:8px;">
+      <p class="highlight-warning" style="margin-top:12px;">
         ※ 캡처·촬영·메모앱 저장 금지<br>
         ※ 니모닉 유출 시 지갑 해킹 및 자산 손실 발생 가능 (모든 책임 본인에게 있음)
       </p>
 
-      <ul class="list" style="margin-top:10px;">
+      <ul class="list" style="margin-top:14px;">
         <li>3. 가상자산 관리 메뉴로 이동</li>
         <li>4. 우측 상단 <span class="strong">＋</span> 버튼 선택</li>
         <li>5. 네트워크를 <span class="strong">Polygon</span> 으로 변경</li>
@@ -273,7 +366,7 @@
         4. P2U<br>0xF43FaBA41bEB27Db352E054E6F163de675D508f1
       </div>
 
-      <p class="small-text" style="margin-top:8px;">
+      <p class="small-text" style="margin-top:12px;">
         ※ 위 과정(3~7번)은 SUT / KWT / MSQ / P2U 모두 동일하게 반복해 주세요.
       </p>
     </section>
@@ -292,7 +385,7 @@
         매장 이용 시 또는 신규 등록 시 아래 내용을 참고해주세요.
       </p>
 
-      <ul class="list" style="margin-top:6px;">
+      <ul class="list">
         <li>
           <span class="num">1.</span>
           <strong>슈퍼트러스트 info</strong> – SUT 결제 매장 종합 블로그<br>
@@ -302,7 +395,7 @@
         </li>
         
         <li>
-          <span class="num">1.</span>
+          <span class="num">2.</span>
           <strong>Silver Star님 블로그</strong> – SUT 결제 매장 지역별 목록<br>
           <a class="link" target="_blank" href="https://m.blog.naver.com/CheckIn.naver?blogId=hello_my_dear_">
             https://m.blog.naver.com/CheckIn.naver?blogId=hello_my_dear_
@@ -310,7 +403,7 @@
         </li>
         
         <li>
-          <span class="num">2.</span>
+          <span class="num">3.</span>
           <strong>SUT 계산기</strong> – 결제 시 필요한 SUT 계산, 후기 작성, 매장 지도 보기 지원<br>
           <a class="link" target="_blank" href="https://sutcoin.github.io/sut-calculator/">
             https://sutcoin.github.io/sut-calculator/
@@ -318,7 +411,7 @@
         </li>
 
         <li>
-          <span class="num">3.</span>
+          <span class="num">4.</span>
           <strong>비회원 SUT 결제 매장 소개자 리워드 (200 SUT)</strong><br>
           신규 매장 등록 절차 안내 블로그<br>
           <a class="link" target="_blank"
@@ -328,7 +421,7 @@
         </li>
       </ul>
 
-      <div class="highlight-warning" style="margin-top:10px;">
+      <div class="highlight-warning" style="margin-top:14px;">
         ※ 신규 매장 등록 시 반드시 절차를 확인 후 안내에 따라 진행해주세요.
       </div>
     </section>
@@ -342,12 +435,12 @@
         <span>SUT 커뮤니티 자발적 락업 공지</span>
       </h2>
 
-      <p class="highlight-warning" style="margin-bottom:12px;">
+      <p class="highlight-warning" style="margin-bottom:16px;">
         중요: 본 락업은 SUT 커뮤니티가 자발적으로 추진하는 사항이며,<br>
         <strong>(주)슈퍼트러스트와는 무관합니다.</strong>
       </p>
 
-      <ul class="list" style="margin-top:6px; line-height:1.8;">
+      <ul class="list">
         <li>
           <span class="num">1.</span>
           <strong>셀프 락업 신청 대상자</strong><br>
@@ -401,7 +494,7 @@
         </li>
       </ul>
 
-      <p class="small-text" style="margin-top:12px; color:#c62828; font-weight:600;">
+      <p class="small-text" style="margin-top:16px; color:#c62828; font-weight:600;">
         ※ 위 내용은 SUT 커뮤니티 내부 자발적 공지이며, 참여 여부는 개인 선택입니다.
       </p>
     </section>
@@ -421,7 +514,7 @@
         소통센터로 연락해주시기 바랍니다.
       </p>
 
-      <div class="code-box" style="margin-top:10px;">
+      <div class="code-box">
         🔗 소통센터<br>
         <a class="link" href="http://pf.kakao.com/_hxgxixoG" target="_blank" rel="noopener noreferrer">
           http://pf.kakao.com/_hxgxixoG
@@ -443,15 +536,15 @@
         현재 실제로 활동하고 도움받는 커뮤니티 기준으로 설정해야 합니다.
       </p>
 
-      <div class="code-box" style="margin-top:10px;">
+      <div class="code-box">
         <div class="code-title">울산남구 커뮤니티 단톡방</div>
         남구 소속이 아니신 분은<br>
         ① 단톡방 나가기 → ② 매월 1일에 소속 커뮤니티 변경 후 재입장
       </div>
 
-      <div class="code-box" style="margin-top:10px;">
+      <div class="code-box">
         <div class="code-title">입장 시 닉네임 양식</div>
-        <div class="tag">[스타방]</div> 초대코드5자리 / 닉네임<br>◼️[스타방] 참여코드문의◼️ 👉01076722550(문자만)<br>
+        <div class="tag">[스타방]</div> 초대코드5자리 / 닉네임<br>◼️[스타방] 참여코드문의◼️ 👉01076722550(문자만)<br><br>
         <div class="tag">[울산남구]</div> 초대코드5자리 / 닉네임(거주동)<br>◼️[커뮤니티] 참여코드문의◼️ 👉커뮤니티 대표
       </div>
     </section>
@@ -466,5 +559,3 @@
   </main>
 </body>
 </html>
-
-
