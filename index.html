@@ -11,7 +11,7 @@
       font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
       background: linear-gradient(135deg, #e8f4fc 0%, #f0f7ff 100%);
       min-height: 100vh;
-      font-size: 17px; /* 기본 글씨 크기 증가 */
+      font-size: 17px;
       line-height: 1.7;
     }
 
@@ -95,6 +95,187 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
+    /* ── 4월 최신 공지 섹션 강조 스타일 ── */
+    .section-new {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 16px rgba(21,101,192,0.13);
+      border: 2px solid #1565c0;
+      position: relative;
+    }
+
+    .new-notice-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1565c0;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      letter-spacing: 0.03em;
+    }
+
+    .new-notice-label .dot {
+      width: 7px;
+      height: 7px;
+      background: #90caf9;
+      border-radius: 50%;
+      display: inline-block;
+      animation: blink 1.2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    /* 공지 카드 (에어드랍 비교 박스) */
+    .notice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .notice-card {
+      border-radius: 12px;
+      padding: 16px 14px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .notice-card.dark {
+      background: #1a237e;
+      color: #fff;
+      border-color: #1a237e;
+    }
+
+    .notice-card.light {
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    .notice-card .card-label {
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 3px 10px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .notice-card.dark .card-label {
+      background: rgba(255,255,255,0.18);
+      color: #90caf9;
+    }
+
+    .notice-card.light .card-label {
+      background: #e0e0e0;
+      color: #555;
+    }
+
+    .notice-card .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .notice-card .card-body {
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .notice-card.dark .card-body {
+      color: #c5cae9;
+    }
+
+    .notice-card.light .card-body {
+      color: #555;
+    }
+
+    .notice-card .card-result {
+      margin-top: 10px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .notice-card.dark .card-result { color: #fff; }
+    .notice-card.light .card-result { color: #1a237e; }
+
+    /* 판매 가격 강조 */
+    .price-highlight {
+      background: #1a237e;
+      color: #fff;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 17px;
+      font-weight: 700;
+      text-align: center;
+      margin: 14px 0;
+      letter-spacing: 0.02em;
+    }
+
+    /* 카운팅 카드 */
+    .counting-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .counting-card {
+      border-radius: 12px;
+      padding: 14px 12px;
+    }
+
+    .counting-card.dark {
+      background: #1a237e;
+      color: #fff;
+    }
+
+    .counting-card.light {
+      background: #f0f4ff;
+      color: #1a237e;
+      border: 1px solid #c5cae9;
+    }
+
+    .counting-card .cc-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      opacity: 0.85;
+    }
+
+    .counting-card .cc-num {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .counting-card .cc-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      opacity: 0.8;
+    }
+
+    .counting-card .cc-example {
+      margin-top: 8px;
+      font-size: 12px;
+      opacity: 0.65;
+    }
+
+    .divider-notice {
+      border: none;
+      border-top: 1px dashed #c5cae9;
+      margin: 18px 0;
+    }
+
+    /* 기존 공통 스타일 */
     .badge {
       display: inline-block;
       font-size: 13px;
@@ -137,7 +318,6 @@
       line-height: 1.7;
     }
 
-    /* 리스트 */
     .list {
       list-style: none;
       padding: 0;
@@ -157,7 +337,6 @@
       margin-right: 6px;
     }
 
-    /* 텍스트 스타일 */
     .small-text {
       font-size: 16px;
       color: #4f5b67;
@@ -189,9 +368,7 @@
       font-size: 14px;
     }
 
-    .strong {
-      font-weight: 700;
-    }
+    .strong { font-weight: 700; }
 
     .link {
       color: #1565c0;
@@ -211,7 +388,6 @@
       font-weight: 600;
     }
 
-    /* 캘린더 박스 */
     .calendar-box {
       padding: 0;
       background: none;
@@ -240,7 +416,6 @@
       border-radius: 14px;
     }
 
-    /* 푸터 */
     .footer {
       margin-top: 20px;
       font-size: 14px;
@@ -264,10 +439,9 @@
           <div class="header-text-sub">Ulsan Namgu Community · 강의 & 안내</div>
         </div>
       </div>
-
       <div class="header-right">
         <div class="label">MOBILE</div>
-        <div>업데이트 · 2026-01-04</div>
+        <div>업데이트 · 2026-04-21</div>
       </div>
     </div>
   </header>
@@ -285,10 +459,8 @@
         울산 남구 커뮤니티의 월별 강의를 이미지로 확인하실 수 있습니다.<br>
         아래 달력을 누르면 전체 화면으로 크게 볼 수 있습니다.
       </p>
-
       <div class="calendar-box">
         <p>※ 최신 변경 사항은 필요시 업데이트 합니다.</p>
-
         <div class="calendar-embed-wrap">
           <a href="calendar.png">
             <img src="calendar.png" alt="울산 남구 커뮤니티 매월 강의 달력">
@@ -296,6 +468,108 @@
         </div>
       </div>
     </section>
+
+    <!-- ★ 4월 최신 공지 (신규 추가) ★ -->
+    <section class="section-new">
+      <div class="new-notice-label">
+        <span class="dot"></span>
+        4월 최신 공지 · 2026.04.19 기준
+      </div>
+
+      <!-- ① 광산 STO 에어드랍 변경 -->
+      <h2 class="section-title" style="font-size:19px; margin-bottom:6px;">
+        <span class="section-title-icon">🏔️</span>
+        <span>광산 STO 코인 에어드랍 변경 공지</span>
+      </h2>
+      <p class="small-text" style="margin-bottom:4px;">
+        취득 자격: <strong>슈퍼세이브 USDT 참여자</strong><br>
+        기산 기간: <strong>4월 19일(일) ~ 별도 공지 없이 마감</strong><br>
+        기준: 테더 참여액 (신용매수 대금 증가분 제외)
+      </p>
+
+      <div class="notice-grid">
+        <div class="notice-card dark">
+          <div class="card-label">60% 락업자</div>
+          <div class="card-title">100 USDT 참여 시</div>
+          <div class="card-body">슈퍼세이브 USDT 버전 참여</div>
+          <div class="card-result">→ 광산 STO 코인 4개 지급</div>
+        </div>
+        <div class="notice-card light">
+          <div class="card-label">60% 비락업자</div>
+          <div class="card-title">100 USDT 참여 시</div>
+          <div class="card-body">슈퍼세이브 USDT 버전 참여</div>
+          <div class="card-result">→ 광산 STO 코인 2개 지급</div>
+        </div>
+      </div>
+
+      <div class="code-box" style="margin-top:10px; font-size:15px;">
+        <div class="code-title">참고사항</div>
+        1. 몽골광산 ALS 탐사 보고서 완료 후 → STO 코인 발행 → 필리핀 STO 거래소 상장 예정<br>
+        2. 광산 STO 코인은 해외법인 발행<br>
+        3. 광산 STO 총 발행량: <strong>3억 개</strong> (가치 대비 매우 적은량)<br>
+        4. 기산 기간 동안 <strong>테더 신용매수 대금 증가분이 아닌, 테더 참여액 기준</strong><br>
+        5. 변경 사유: 잔여신용매수대금 60% 락업자 특별 우대 정책<br>
+        &nbsp;&nbsp;&nbsp;(4월 20일부터 시행 예정이었던 기존 공지 <strong>전면 무효</strong>)<br>
+        6. 재참여 시마다 수량 누적으로 합산 표시<br>
+        7. DeCT Right로 참여자는 제외
+      </div>
+
+      <hr class="divider-notice">
+
+      <!-- ② 에어드랍 토큰 카운팅 기준 -->
+      <h2 class="section-title" style="font-size:19px; margin-bottom:6px; margin-top:4px;">
+        <span class="section-title-icon">🎯</span>
+        <span>에어드랍 토큰 카운팅 기준</span>
+      </h2>
+      <p class="small-text" style="margin-bottom:12px;">
+        타이틀: <strong>Air Drop Token</strong> &nbsp;|&nbsp; 적용: <strong>4월 19일부터</strong> (ON/OFF 방식)<br>
+        참여 테더 당 에어드랍 토큰 숫자 카운팅 카드
+      </p>
+
+      <div class="counting-grid">
+        <div class="counting-card dark">
+          <div class="cc-title">KWT 잔여신용대금 락업자</div>
+          <div class="cc-num">×4</div>
+          <div class="cc-desc">100 USDT 당<br>숫자 <strong>4</strong> 표시</div>
+          <div class="cc-example">예) 1,000 USDT → 숫자 40</div>
+        </div>
+        <div class="counting-card light">
+          <div class="cc-title">KWT 잔여신용대금 락업 안 한 사람</div>
+          <div class="cc-num">×2</div>
+          <div class="cc-desc">100 USDT 당<br>숫자 <strong>2</strong> 표시</div>
+          <div class="cc-example">예) 1,000 USDT → 숫자 20</div>
+        </div>
+      </div>
+
+      <hr class="divider-notice">
+
+      <!-- ③ 광산 코인 1차 판매 -->
+      <h2 class="section-title" style="font-size:19px; margin-bottom:6px; margin-top:4px;">
+        <span class="section-title-icon">🪙</span>
+        <span>광산 코인 1차 판매 공지</span>
+      </h2>
+
+      <div class="price-highlight">
+        1차 판매가 &nbsp;|&nbsp; 1 광산 코인 = 1 USDT (테더)
+      </div>
+
+      <div class="code-box" style="font-size:15px;">
+        <div class="code-title">판매 사유</div>
+        1. 테더버전 미참여자에게도 반드시 기회 제공 — 전체 회원의 소중한 기회 부여<br>
+        2. 지갑 수량 확보 및 실질 유저 확보 — 초기 최대한 많은 유저 참여 유리<br>
+        3. 소량이라도 확보할 수 있는 기회를 전체 회원에게 제공해야 차후 이견 없음
+      </div>
+
+      <div class="code-box" style="font-size:15px; margin-top:10px;">
+        <div class="code-title">신청 안내</div>
+        · 신청 시기: <strong>즉시</strong> (소통채널)<br>
+        · 1차 마감: 1차 예정 물량 소진 시까지<br>
+        · 신청 단위: <strong>100개 단위</strong><br>
+        · 구매 신청 결과에 따라 최종 분배 수량 조절 가능 (USDT 입금 선착순 배정)<br>
+        · 테더 참여자 에어드랍 이벤트와는 <strong>별개 진행</strong>
+      </div>
+    </section>
+    <!-- ★ 4월 최신 공지 끝 ★ -->
 
     <!-- 필독 안내 -->
     <section class="section">
@@ -314,7 +588,7 @@
         <div class="code-title">교육 참석 시</div>
         일반/전산: 출석부 작성 필수<br>
         특강/사례담: 울산 남구 소속 회원 카톡 릴레이(1~100번까지)<br>
-        타 소속 커뮤니티 회원 참여 시: 대표/부대표 사전 문의 후 참석<br><br> 
+        타 소속 커뮤니티 회원 참여 시: 대표/부대표 사전 문의 후 참석<br><br>
         <div class="code-title">슈퍼세이브 차단 해제 요청</div>
         커뮤니티에 비치된 양식 작성 후, 소통센터에 자료 증빙 및 해제 요청<br><br>
         <div class="code-title">강화된 P2P 거래를 위한 카톡방 입장 요청</div>
@@ -370,18 +644,18 @@
         1. SUT<br>0x98965474EcBeC2F532F1f780ee37b0b05F77Ca55<br><br>
         2. KWT<br>0x435001Af7fC65B621B0043df99810B2f30860c5d<br><br>
         3. MSQ<br>0x6A8Ec2d9BfBDD20A7F5A4E89D640F7E7cebA4499<br><br>
-        4. P2U<br>0xF43FaBA41bEB27Db352E054E6F163de675D508f1
+        4. P2U<br>0xF43FaBA41bEB27Db352E054E6F163de675D508f1<br><br>
+        5. MPC<br>0x2d854416d2749B1F0eb8a4B2Ab9027989F2ba262
       </div>
 
       <p class="small-text" style="margin-top:12px;">
-        ※ 위 과정(3~7번)은 SUT / KWT / MSQ / P2U 모두 동일하게 반복해 주세요.
+        ※ 위 과정(3~7번)은 SUT / KWT / MSQ / P2U / MCP 모두 동일하게 반복해 주세요.
       </p>
     </section>
 
     <!-- SUT 결제 매장 정보 및 등록절차 -->
     <section class="section">
       <div class="badge">SUT 결제 안내</div>
-
       <h2 class="section-title">
         <span class="section-title-icon">🏪</span>
         <span>SUT 결제 매장 정보 및 신규 등록 절차</span>
@@ -400,7 +674,6 @@
             https://m.blog.naver.com/hello_my_dear_?tab=1
           </a>
         </li>
-        
         <li>
           <span class="num">2.</span>
           <strong>Silver Star님 블로그</strong> – SUT 결제 매장 지역별 목록<br>
@@ -408,48 +681,41 @@
             https://m.blog.naver.com/CheckIn.naver?blogId=hello_my_dear_
           </a>
         </li>
-        
         <li>
           <span class="num">3.</span>
-          <strong>SUT 계산기 간편버전 </strong> – 결제 시 필요한 SUT 계산, 후기 작성, 매장 지도 보기 지원<br>
+          <strong>SUT 계산기 간편버전</strong> – 결제 시 필요한 SUT 계산, 후기 작성, 매장 지도 보기 지원<br>
           <a class="link" target="_blank" href="https://sutcoin.github.io/sut-calculator/">
             https://sutcoin.github.io/sut-calculator/
-          </a><br>  
-           <strong>SUT 계산기 최신버전 </strong><br>
+          </a><br>
+          <strong>SUT 계산기 최신버전</strong><br>
           <a class="link" target="_blank" href="https://teamtrustre.github.io/">
             https://teamtrustre.github.io/
           </a>
         </li>
-
         <li>
           <span class="num">4.</span>
           <strong>결제 매장 등록 안내</strong><br>
           신규 매장 등록 절차 안내 블로그<br>
-          <a class="link" target="_blank"
-            href="https://blog.naver.com/hello_my_dear_/224133957487">
+          <a class="link" target="_blank" href="https://blog.naver.com/hello_my_dear_/224133957487">
             신규 매장 등록 절차 보기
           </a>
         </li>
-
-         <li>
+        <li>
           <span class="num">5.</span>
           <strong>어플설치 이용하여 등록</strong><br>
           👉소개자 전화번호란에 매장 구분 기재<br>
           예) 비회원매장/소개자이름/소개자 폰번<br>
           예) 회원매장/소개자이름/소개자 폰번<br>
           👉할인혜택 필수 기재<br><br>
-
           👉앱에서 등록 완료 후 아래 2가지를 제출해주세요(회원/비회원 필수)<br>
           등록 완료 캡처본, 매장 홍보물 인증샷<br>
           ☎️010 4212 7464<br><br>
-
-          동의서는 슈퍼트러스트 앱에서 ‘동의함’으로 대체 됩니다<br>
-          <a class="link" target="_blank"
-            href="https://play.google.com/store/apps/details?id=io.supertrust.app">
-            안드로이드폰 등록용 어플<br>
-          <a class="link" target="_blank"
-            href="https://apps.apple.com/kr/app/super-trust/id6755297934">
-            아이폰 등록용 어플            
+          동의서는 슈퍼트러스트 앱에서 '동의함'으로 대체 됩니다<br>
+          <a class="link" target="_blank" href="https://play.google.com/store/apps/details?id=io.supertrust.app">
+            안드로이드폰 등록용 어플
+          </a><br>
+          <a class="link" target="_blank" href="https://apps.apple.com/kr/app/super-trust/id6755297934">
+            아이폰 등록용 어플
           </a>
         </li>
       </ul>
@@ -462,7 +728,6 @@
     <!-- SUT 커뮤니티 자발적 락업 공지 -->
     <section class="section">
       <div class="badge badge-red">SUT 락업 공지</div>
-
       <h2 class="section-title">
         <span class="section-title-icon">🔒</span>
         <span>SUT 커뮤니티 자발적 락업 공지</span>
@@ -479,46 +744,39 @@
           <strong>셀프 락업 신청 대상자</strong><br>
           신용거래대금 <strong>7억 KWT 이상 보유자</strong>
         </li>
-
         <li>
           <span class="num">2.</span>
           <strong>셀프 락업 참여방법</strong><br>
           6개월간 매주 주정산 KWT의 <strong>30%</strong>로 SUT를 매수 후,<br>
           커뮤니티 관리 <strong>셀프 락업 지갑</strong>으로 SUT 전송하여 참여
         </li>
-
         <li>
           <span class="num">3.</span>
           <strong>셀프 락업 참여기간</strong><br>
           총 24회 (6개월)<br>
           <strong>2025년 12월 1일 ~ 2026년 5월 31일</strong>
         </li>
-
         <li>
           <span class="num">4.</span>
           <strong>셀프 락업 기간</strong><br>
           <strong>2026년 6월 1일 ~ 2026년 11월 30일</strong> (6개월)
         </li>
-
         <li>
           <span class="num">5.</span>
           <strong>셀프 락업 해제기간</strong><br>
           <strong>2026년 12월 1일 ~ 2027년 5월 31일</strong> (6개월)
         </li>
-
         <li>
           <span class="num">6.</span>
           <strong>셀프 락업 참여 특전</strong><br>
           몽골 최초 법정화폐(투그릭) 기반 가상자산 거래소(업비트/빗썸과 유사)<br>
           현지 법인 <strong>지분 일부에 대한 STO 토큰 우선 매수 자격 부여</strong>
         </li>
-
         <li>
           <span class="num">7.</span>
           <strong>트러스트 자격 부여</strong><br>
           락업 참여자(동의자)는 <strong>조건 없이 2026년 11월 30일까지 유지</strong>
         </li>
-
         <li>
           <span class="num">8.</span>
           <strong>기타</strong><br>
@@ -531,11 +789,10 @@
         ※ 위 내용은 SUT 커뮤니티 내부 자발적 공지이며, 참여 여부는 개인 선택입니다.
       </p>
     </section>
-    
+
     <!-- 전국 P2P방 운영 규칙 -->
     <section class="section">
       <div class="badge badge-red">P2P방 운영</div>
-
       <h2 class="section-title">
         <span class="section-title-icon">√</span>
         <span>카톡 P2P방 운영 규칙</span>
@@ -557,14 +814,12 @@
           4. "제가 거래 하겠습니다 (분할 시 1000개 갯수 작성)"<br>
           5. 거래글 게시자는 상대방 전화번호 확인 후 그 번호랑만 거래
         </li>
-
         <li>
           <span class="num">2.</span>
           <strong>모든 거래에 기본적인 신원 확인은 필수</strong><br>
           초대코드 확인 필수<br>
           <strong>큰 금액일 경우 신분증 요청</strong>
         </li>
-
         <li>
           <span class="num">3.</span>
           <strong>내보내기 대상</strong><br>
@@ -572,9 +827,8 @@
           2. 앱 거래 중복 거래자<br>
           3. 단타 적발<br>
           4. 닉네임 잘못 설정<br>
-          5. 거래글과 관련 없는 글 게시</strong>
+          5. 거래글과 관련 없는 글 게시
         </li>
-
         <li>
           <span class="num">4.</span>
           <strong>거래글 답글 예시</strong><br>
@@ -587,7 +841,6 @@
           3. 답장한 사람이 직접 연락해서 거래하시면 됩니다.<br>
           4. 거래 후 "완료 답글"만
         </li>
-
         <li>
           <span class="num">5.</span>
           <strong>✅️ P2P매수가격 설정</strong><br>
@@ -605,21 +858,21 @@
           🚫P2P 대행 매수/매도 금지!(대표 포함, 소개자 포함)🚫글 작성시 수식어 금지!<br>
           (~급하다, 급급 등)
         </li>
-
         <li>
           <span class="num">6.</span>
           <strong>USDT 매수매도 가격 변경</strong><br>
           - 매일 거래소 기준 (업비트) 으로<br>
           +50원, -50원에서 자유롭게 매수 매도글 올리시면 됩니다.<br>
           - AM 9시 기준 업비트 기준으로 시행하겠습니다.<br>
-          예시) 업비트에서 1,470원일경우 (1,420원 ~ 1,520원)<br>
+          예시) 업비트에서 1,470원일경우 (1,420원 ~ 1,520원)
         </li>
 
         <div class="code-box">
-        🔗 슈퍼트러스트 홈페이지<br>
-        <a class="link" href="https://supertrust.club/" target="_blank" rel="noopener noreferrer">
-          https://supertrust.club/<br> 
-        </a>
+          🔗 슈퍼트러스트 홈페이지<br>
+          <a class="link" href="https://supertrust.club/" target="_blank" rel="noopener noreferrer">
+            https://supertrust.club/
+          </a>
+        </div>
       </ul>
 
       <p class="small-text" style="margin-top:16px; color:#c62828; font-weight:600;">
@@ -645,10 +898,10 @@
       <div class="code-box">
         🔗 소통센터<br>
         <a class="link" href="http://pf.kakao.com/_hxgxixoG" target="_blank" rel="noopener noreferrer">
-          http://pf.kakao.com/_hxgxixoG<br> 
-        </a>
+          http://pf.kakao.com/_hxgxixoG
+        </a><br><br>
         🔗 매타스타 글로벌<br>
-            "계정관련/정산/탈퇴/양도양수문의"<br>
+        "계정관련/정산/탈퇴/양도양수문의"<br>
         <a class="link" href="http://pf.kakao.com/_cMcWb/chat" target="_blank" rel="noopener noreferrer">
           http://pf.kakao.com/_cMcWb/chat
         </a>
@@ -677,8 +930,10 @@
 
       <div class="code-box">
         <div class="code-title">입장 시 닉네임 양식</div>
-        <div class="tag">[스타방]</div> 초대코드5자리 / 닉네임<br>◼️[스타방] 참여코드문의◼️ 👉01076722550(문자만)<br><br>
-        <div class="tag">[울산남구]</div> 초대코드5자리 / 닉네임(거주동)<br>◼️[커뮤니티] 참여코드문의◼️ 👉커뮤니티 대표/부대표
+        <div class="tag">[스타방]</div> 초대코드5자리 / 닉네임<br>
+        ◼️[스타방] 참여코드문의◼️ 👉01076722550(문자만)<br><br>
+        <div class="tag">[울산남구]</div> 초대코드5자리 / 닉네임(거주동)<br>
+        ◼️[커뮤니티] 참여코드문의◼️ 👉커뮤니티 대표/부대표
       </div>
     </section>
 
@@ -692,5 +947,3 @@
   </main>
 </body>
 </html>
-
-
